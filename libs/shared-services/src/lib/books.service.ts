@@ -14,14 +14,20 @@ const HEADER = {
 export class BooksService {
   constructor(private http: HttpClient) {}
 
+  // Get all books.
+  // Working good.
   all() {
     return this.http.get<BookModel[]>(BASE_URL);
   }
 
+  // Load and give one book by his id.
   load(id: string) {
     return this.http.get<BookModel>(`${BASE_URL}/${id}`);
   }
 
+
+  // Creating one book.
+  // Working good
   create(bookProps: BookRequiredProps) {
     const Book: BookModel = {
       id: uuid.v4(),
@@ -35,6 +41,7 @@ export class BooksService {
     );
   }
 
+  // Not working for now.
   update(id: string, updates: BookRequiredProps) {
     return this.http.patch<BookModel>(
       `${BASE_URL}/${id}`,
@@ -43,6 +50,7 @@ export class BooksService {
     );
   }
 
+  // Not working for now.
   delete(id: string) {
     return this.http.delete(`${BASE_URL}/${id}`);
   }
