@@ -7,10 +7,10 @@ import { BooksPageActions, BooksApiActions } from '@book-co/books-page/actions';
 const createBook = (books: BookModel[], book: BookModel) => [...books, book];
 const updateBook = (books: BookModel[], changes: BookModel) =>
   books.map((book) => {
-    return book.id === changes.id ? Object.assign({}, book, changes) : book;
+    return book._id === changes._id ? Object.assign({}, book, changes) : book;
   });
 const deleteBook = (books: BookModel[], bookId: string) =>
-  books.filter((book) => bookId !== book.id);
+  books.filter((book) => bookId !== book._id);
 
 
   export interface State{
@@ -72,7 +72,7 @@ const deleteBook = (books: BookModel[], bookId: string) =>
   //   const books= selectAll(state);
   //   const activeBookId= selectActiveBookId(state);
 
-  //   return books.find((book)=> book.id === activeBookId) || null;
+  //   return books.find((book)=> book._id === activeBookId) || null;
   // }
 
 
@@ -81,7 +81,7 @@ const deleteBook = (books: BookModel[], bookId: string) =>
     selectAll,
     selectActiveBookId,
     (books, activeBookId)=>{
-    return books.find((book)=> book.id === activeBookId) || null;
+    return books.find((book)=> book._id === activeBookId) || null;
     }
   )
 

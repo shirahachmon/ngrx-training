@@ -28,7 +28,7 @@ export class BooksApiEffects {
     ))
   )
 
-  cupdateBook$= createEffect(()=>
+  updateBook$= createEffect(()=>
     this.actions$.pipe(
       ofType(BooksPageActions.updateBook),
       concatMap((action)=>

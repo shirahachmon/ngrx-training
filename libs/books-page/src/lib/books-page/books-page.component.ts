@@ -35,7 +35,7 @@ export class BooksPageComponent implements OnInit {
 
 
   onSelect(book: BookModel) {
-    this.store.dispatch(BooksPageActions.selectBook({bookId: book.id}));
+    this.store.dispatch(BooksPageActions.selectBook({bookId: book._id}));
   }
 
   onCancel() {
@@ -47,12 +47,12 @@ export class BooksPageComponent implements OnInit {
   }
 
   onSave(book: BookRequiredProps | BookModel) {
-    if ('id' in book) this.updateBook(book)
+
+    if ('_id' in book) this.updateBook(book)
     else this.saveBook(book);
   }
 
   saveBook(bookProps: BookRequiredProps) {
-
     this.store.dispatch(BooksPageActions.createBook({
       book: bookProps
     }));
@@ -60,13 +60,13 @@ export class BooksPageComponent implements OnInit {
 
   updateBook(book: BookModel) {
     this.store.dispatch(BooksPageActions.updateBook({
-      bookId: book.id, changes: book
+      bookId: book._id, changes: book
     }));
   }
 
   onDelete(book: BookModel) {
     this.store.dispatch(BooksPageActions.deleteBook({
-      bookId: book.id
+      bookId: book._id
     }));
   }
 }
